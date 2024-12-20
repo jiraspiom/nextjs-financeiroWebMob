@@ -1,3 +1,4 @@
+import DialogDespesa from '@/components/DialogDespesa'
 import DropDownButton from '@/components/DropdownButton'
 import TabelaTransacao from '@/components/TabelaTransacao'
 
@@ -33,8 +34,13 @@ const itens = [
 
 export default function Despesas() {
   return (
-    <div className="bg-red-400">
-      <DropDownButton name="Despesas" color="bg-red-600" link="#" />
+    <div className="">
+      <div className="flex justify-between bg-red-400">
+        <DropDownButton name="Despesas" color="bg-red-600" link="#" />
+        <div className="p-4">
+          <DialogDespesa />
+        </div>
+      </div>
       <TabelaTransacao itens={itens} />
     </div>
   )

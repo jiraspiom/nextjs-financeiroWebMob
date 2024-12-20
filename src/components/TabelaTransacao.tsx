@@ -17,7 +17,7 @@ type ItensProps = {
 
 export default function TabelaTransacao({ itens }: ItensProps) {
   return (
-    <div>
+    <div className="w-1/2">
       <div className="relative overflow-x-auto">
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
