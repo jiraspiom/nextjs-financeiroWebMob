@@ -1,47 +1,51 @@
+import getDespesa from '@/app/actions/despesa'
+import CardTransacao from '@/components/CardTransacao'
 import DialogDespesa from '@/components/DialogDespesa'
 import DropDownButton from '@/components/DropdownButton'
-import TabelaTransacao from '@/components/TabelaTransacao'
+import TabelaTransacaoDR from '@/components/TabelaTransacaoDR'
 
-const itens = [
-  {
-    id: 121,
-    status: 1,
-    data: '25/50/5555',
-    descricao: 'primeita',
-    categoria: 'Pagamento',
-    conta: 'Carteira',
-    valor: '2000',
-  },
-  {
-    id: 232,
-    status: 2,
-    data: '25/07/2023',
-    descricao: 'primeita',
-    categoria: 'Pagamento',
-    conta: 'Bradesco',
-    valor: '201',
-  },
-  {
-    id: 235,
-    status: 4,
-    data: '25/07/2023',
-    descricao: 'primeita',
-    categoria: 'Pagamento',
-    conta: 'Itau',
-    valor: '334',
-  },
-]
+export default async function Despesas() {
+  const itensDespesa = await getDespesa()
 
-export default function Despesas() {
+  const result = itensDespesa.reduce(
+    (acc, item) => {
+      const value = item.valor
+
+      if (item.status === 0) {
+        acc.statusPendente += value
+      }
+      if (item.status === 1) {
+        acc.statusPago += value
+      }
+      acc.total += value
+      return acc
+    },
+    { statusPendente: 0, statusPago: 0, total: 0 }
+  )
+
   return (
-    <div className="">
+    <div>
       <div className="flex justify-between bg-red-400">
         <DropDownButton name="Despesas" color="bg-red-600" link="#" />
+
         <div className="p-4">
           <DialogDespesa />
         </div>
       </div>
-      <TabelaTransacao itens={itens} />
+      <div className="flex gap-4 bg-slate-500">
+        <TabelaTransacaoDR itens={itensDespesa} />
+        <div>
+          <CardTransacao
+            title="Despesa pendente"
+            valor={String(result.statusPendente)}
+          />
+          <CardTransacao
+            title="Despesa paga"
+            valor={String(result.statusPago)}
+          />
+          <CardTransacao title="Total" valor={String(result.total)} />
+        </div>
+      </div>
     </div>
   )
 }

@@ -4,18 +4,21 @@ import Editar from './Icons/Edit'
 
 type Item = {
   id: number
-  status: number
-  data: string
-  descricao: string
+  descricao: string | null
+  valor: number
   categoria: string
-  conta: string
-  valor: string
+  data: Date
+  status: number
+  conta: {
+    nome: string
+  }
 }
+
 type ItensProps = {
   itens: Item[]
 }
 
-export default function TabelaTransacaoReceita({ itens }: ItensProps) {
+export default function TabelaTransacaoDR({ itens }: ItensProps) {
   return (
     <div>
       <div className="relative overflow-x-auto">
@@ -54,10 +57,12 @@ export default function TabelaTransacaoReceita({ itens }: ItensProps) {
                 <td className="px-6 py-4">
                   {iten.status === 1 ? 'OK' : 'VER'}{' '}
                 </td>
-                <td className="px-6 py-4">{iten.data}</td>
+                <td className="px-6 py-4">
+                  {Intl.DateTimeFormat('pt-BR').format(iten.data)}
+                </td>
                 <td className="px-6 py-4">{iten.descricao}</td>
                 <td className="px-6 py-4">{iten.categoria}</td>
-                <td className="px-6 py-4">{iten.conta}</td>
+                <td className="px-6 py-4">{String(iten.conta.nome)}</td>
                 <td className="px-6 py-4">{iten.valor}</td>
                 <td className="px-6 py-4">
                   <div className="flex justify-end">
