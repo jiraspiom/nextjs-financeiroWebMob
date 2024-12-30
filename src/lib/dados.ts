@@ -110,3 +110,66 @@ export function getContas() {
     },
   ]
 }
+
+const users = [
+  {
+    id: '1',
+    nome: 'Usuario Um',
+    email: 'usuario1@email.com',
+    password: '1usuario1',
+  },
+  {
+    id: '1',
+    nome: 'Usuario Dois',
+    email: 'usuario2@email.com',
+    password: '2usuario2',
+  },
+  {
+    id: '1',
+    nome: 'Usuario Tres',
+    email: 'usuario3@email.com',
+    password: '3usuario3',
+  },
+]
+
+export function getUserById(id: string) {
+  const user = users.find(user => user.id === String(id))
+
+  if (!user) return null
+
+  return user
+}
+
+export function getUserByEmail(email: string) {
+  const user = users.find(user => user.email === String(email))
+
+  if (!user) return null
+
+  return user
+}
+
+export function verifyPasswordHash(email: string, password: string) {
+  const user = users.find(user => user.email === String(email))
+
+  if (!user) return null
+
+  if (password === user.password) {
+    return user
+  }
+
+  return null
+}
+
+export async function getUserFromDb(email: string, password: string) {
+  const user = users.find(
+    user => user.email === String(email) && user.password === String(password)
+  )
+
+  if (!user) return null
+
+  // if (password === user.password) {
+  //   return user
+  // }
+
+  return user
+}
