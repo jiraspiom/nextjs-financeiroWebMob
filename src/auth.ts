@@ -1,33 +1,8 @@
 import NextAuth from 'next-auth'
-import Credentials from 'next-auth/providers/credentials'
-import { getUserFromDb } from './lib/dados'
+import authConfig from './auth.config'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    Credentials({
-      credentials: {
-        email: {},
-        password: {},
-      },
-      authorize: async credentials => {
-        // let user = null
-
-        //  const pwHash = saltAndHashPassword(credentials.password)
-        const user = await getUserFromDb(
-          String(credentials.email),
-          String(credentials.password)
-        )
-
-        console.log('usar', user)
-
-        if (!user) {
-          throw new Error('credeicnias invalida')
-        }
-
-        return user
-      },
-    }),
-  ],
+  ...authConfig,
   secret: process.env.AUTH_SECRET,
   jwt: {
     maxAge: 10 * 60,
@@ -35,7 +10,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     maxAge: 10 * 60,
   },
-  pages: {
-    signIn: '/auth/login',
-  },
+  // pages: {
+  //   signIn: '/auth/login',
+  // },
 })

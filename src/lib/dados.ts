@@ -116,19 +116,19 @@ const users = [
     id: '1',
     nome: 'Usuario Um',
     email: 'usuario1@email.com',
-    password: '1usuario1',
+    password: '123123',
   },
   {
     id: '1',
     nome: 'Usuario Dois',
     email: 'usuario2@email.com',
-    password: '2usuario2',
+    password: '123123',
   },
   {
     id: '1',
     nome: 'Usuario Tres',
     email: 'usuario3@email.com',
-    password: '3usuario3',
+    password: '123123',
   },
 ]
 

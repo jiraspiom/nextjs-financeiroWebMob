@@ -1,12 +1,15 @@
+'use client'
 import CardDashBaordBalancoMensal from '@/components/CardDashBaordBalancoMensal'
 import CardDashboard from '@/components/CardDashboard'
 import CardDashboardCartaoCredido from '@/components/CardDashboardCartaoCredido'
 import CardDashboardOutro from '@/components/CardDashboardOutro'
+import SelectUser from '@/components/SelectUser'
 
 export default function Home() {
   return (
     <div>
       <h1 className="bg-slate-800 text-white p-2">Dashboard</h1>
+      <SelectUser />
       <div className="w-1/2 flex flex-row flex-wrap gap-4 m-2 justify-between">
         <CardDashboard title="Saldo atual" valor="1.090.00" />
         <CardDashboard title="Receita" valor="1.000,00" />

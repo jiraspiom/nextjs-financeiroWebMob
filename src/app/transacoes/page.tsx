@@ -3,27 +3,6 @@ import TabelaTransacao from '@/components/TabelaTransacao'
 import getDespesa from '../actions/despesa'
 import getReceita from '../actions/receita'
 
-// const itens = [
-//   {
-//     id: 111,
-//     status: 1,
-//     data: '19/12/2024',
-//     descricao: 'primeira',
-//     categoria: 'Transferencia',
-//     conta: 'Carteira',
-//     valor: '2000',
-//   },
-//   {
-//     id: 112,
-//     status: 2,
-//     data: '19/12/2023',
-//     descricao: 'segunda',
-//     categoria: 'Transferencia',
-//     conta: 'Bradesco',
-//     valor: '201',
-//   },
-// ]
-
 export default async function Transacoes() {
   const despesas = await getDespesa()
   const receitas = await getReceita()

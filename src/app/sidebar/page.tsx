@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Usuario from './usuario'
 
 export default function SideBar() {
   return (
@@ -9,6 +10,8 @@ export default function SideBar() {
         aria-label="Sidebar"
       >
         <div className="h-full overflow-y-auto bg-gray-50 px-3 py-4 dark:bg-gray-800">
+          <Usuario />
+
           <ul className="space-y-2 font-medium">
             <li>
               <Link
@@ -160,6 +163,12 @@ export default function SideBar() {
               >
                 <span className="ml-3 flex-1 whitespace-nowrap">deslogar</span>
               </Link>
+            </li>
+            <li>
+              <Link href="/api/auth/login">Login</Link>
+            </li>
+            <li>
+              <Link href="/api/auth/logout">Logout</Link>
             </li>
           </ul>
         </div>
