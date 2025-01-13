@@ -3,7 +3,7 @@ export function getDespesaJson() {
     {
       id: 11,
       status: 0,
-      data: '05/12/2024',
+      data: '05/01/2025',
       descricao: 'padaria',
       categoria: 'Alimentacao',
       conta: 'Carteira',
@@ -12,7 +12,7 @@ export function getDespesaJson() {
     {
       id: 12,
       status: 1,
-      data: '20/12/2025',
+      data: '05/01/2025',
       descricao: 'padaria',
       categoria: 'Alimentacao',
       conta: 'Carteira',
@@ -21,7 +21,7 @@ export function getDespesaJson() {
     {
       id: 13,
       status: 1,
-      data: '20/12/2024',
+      data: '05/01/2025',
       descricao: 'energia',
       categoria: 'Casa',
       conta: 'Itau',
@@ -30,7 +30,7 @@ export function getDespesaJson() {
     {
       id: 14,
       status: 1,
-      data: '20/12/2024',
+      data: '03/01/2025',
       descricao: 'Restaurante menstral',
       categoria: 'Alimentacao',
       conta: 'Carteira',
@@ -43,7 +43,7 @@ export function getReceitaJson() {
     {
       id: 1,
       status: 1,
-      data: '01/12/2024',
+      data: '01/01/2025',
       descricao: 'salario novembro',
       categoria: 'Salario',
       conta: 'Itau',
@@ -53,7 +53,7 @@ export function getReceitaJson() {
     {
       id: 2,
       status: 0,
-      data: '23/01/2024',
+      data: '10/01/2025',
       descricao: 'comissao',
       categoria: 'Bonificacao',
       conta: 'Itau',
@@ -67,7 +67,7 @@ export function getTransferencia() {
     {
       id: 121,
       status: 1,
-      data: '19/12/2024',
+      data: '10/01/2025',
       observacao: 'primeira',
       de: 'nubanco',
       para: 'itauu',
@@ -76,7 +76,7 @@ export function getTransferencia() {
     {
       id: 122,
       status: 1,
-      data: '19/12/2024',
+      data: '10/01/2025',
       observacao: 'segunda',
       de: 'Carteira',
       para: 'nubanco',

@@ -1,6 +1,8 @@
 import Confirmar from './Icons/Confirm'
 import Deletar from './Icons/Delete'
 import Editar from './Icons/Edit'
+import Ok from './Icons/Ok'
+import Snake from './Icons/Snake'
 
 type Item = {
   id: number
@@ -54,7 +56,7 @@ export default function TabelaTransacao({ itens }: ItensProps) {
                 className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
               >
                 <td className="px-6 py-4">
-                  {iten.status === 1 ? 'OK' : 'VER'}{' '}
+                  {iten.status === 1 ? <Ok /> : <Snake />}
                 </td>
                 <td className="px-6 py-4">
                   {Intl.DateTimeFormat('pt-BR').format(iten.data)}

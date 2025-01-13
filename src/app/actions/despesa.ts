@@ -11,6 +11,7 @@ export default async function getDespesa() {
       valor: true,
       status: true,
     },
+    orderBy: { data: 'desc' },
   })
   return despesas
 }

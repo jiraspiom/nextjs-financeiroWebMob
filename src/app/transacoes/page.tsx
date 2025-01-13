@@ -31,7 +31,7 @@ export default async function Transacoes() {
   ]
 
   const transacoesby = transacoes.sort(
-    (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime()
+    (a, b) => new Date(a.data).getTime() + new Date(b.data).getTime()
   )
 
   return (

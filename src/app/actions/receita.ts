@@ -11,6 +11,7 @@ export default async function getReceita() {
       valor: true,
       status: true,
     },
+    orderBy: { data: 'desc' },
   })
   return receitas
 }
