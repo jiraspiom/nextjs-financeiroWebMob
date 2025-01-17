@@ -1,6 +1,7 @@
 import { Hono, type Context } from 'hono'
-import type { UserService } from '../services/UserService'
+
 import { z } from 'zod'
+import type { UserService } from '../services/UserService'
 
 interface UserInput {
   name: string
@@ -18,27 +19,25 @@ const UserSchema = z.object({
 })
 
 export class UserController {
-  private userRouter: Hono
-  private userService: UserService
+  private readonly userRouter: Hono
+  private readonly service: UserService
 
   constructor(userService: UserService) {
-    this.userService = userService
+    this.service = userService
     this.userRouter = new Hono()
     this.setupRoutes()
   }
 
   private setupRoutes(): void {
-    this.userRouter.post('/', this.createUser)
-    this.userRouter.get('/', this.getAllUsers)
-    this.userRouter.get('/:id', this.getUserById)
-    this.userRouter.put('/:id', this.updateUser)
-    this.userRouter.delete('/:id', this.deleteUser)
+    this.userRouter.post('/', this.createUserController)
+    this.userRouter.get('/', this.getAllUsersController)
+    this.userRouter.get('/:id', this.getUserByIdController)
+    this.userRouter.put('/:id', this.updateUserController)
+    this.userRouter.delete('/:id', this.deleteUserController)
   }
 
-  async createUser(c: Context) {
-    console.log('object')
+  async createUserController(c: Context) {
     const body = await c.req.json<UserInput>()
-    console.log('ccc', body)
 
     const result = UserSchema.safeParse(body)
 
@@ -46,21 +45,21 @@ export class UserController {
       return c.json({ error: 'Dados inválidos' }, 400)
     }
 
-    const user = await this.userService.createUser(result.data)
+    const user = await this.service.createUserService(result.data)
 
     return c.json(user, 201)
   }
 
-  async getAllUsers(c: Context) {
-    const users = await this.userService.getAllUsers()
+  async getAllUsersController(c: Context) {
+    const users = await this.service.getAllUsersService()
 
     return c.json(users)
   }
 
-  async getUserById(c: Context) {
+  async getUserByIdController(c: Context) {
     const id = c.req.param('id')
 
-    const user = await this.userService.getUserById(Number(id))
+    const user = await this.service.getUserByIdService(Number(id))
 
     if (!user) {
       return c.json({ error: 'Usuário não encontrado' }, 400)
@@ -69,7 +68,7 @@ export class UserController {
     return c.json(user)
   }
 
-  async updateUser(c: Context) {
+  async updateUserController(c: Context) {
     const id = c.req.param('id')
     const body = c.req.json<UserUpdateInput>()
 
@@ -79,15 +78,15 @@ export class UserController {
       return c.json({ error: 'Dados inválidos' }, 400)
     }
 
-    const user = await this.userService.updateUser(Number(id), result.data)
+    const user = await this.service.updateUserService(Number(id), result.data)
 
     return c.json(user)
   }
 
-  async deleteUser(c: Context) {
+  async deleteUserController(c: Context) {
     const id = c.req.param('id')
 
-    await this.userService.deleteUser(Number(id))
+    await this.service.deleteUserService(Number(id))
 
     return c.json({ message: 'Usuário deletado com sucesso' })
   }

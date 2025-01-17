@@ -1,6 +1,5 @@
 import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
-import { PrismaClient } from '@prisma/client'
 import { UserRepository } from '../repositories/UserRepository'
 import { UserService } from '../services/UserService'
 import { UserController } from '../controller/UserController'
@@ -8,8 +7,8 @@ import { UserController } from '../controller/UserController'
 export const runtime = 'edge'
 
 const app = new Hono().basePath('/api')
-const prisma = new PrismaClient()
-const userRepository = new UserRepository(prisma)
+
+const userRepository = new UserRepository()
 const userService = new UserService(userRepository)
 const userController = new UserController(userService)
 
@@ -21,5 +20,6 @@ app.get('/hello', c => {
 
 app.route('/users', userController.getRouter())
 
+// export default handle(app)
 export const GET = handle(app)
 export const POST = handle(app)

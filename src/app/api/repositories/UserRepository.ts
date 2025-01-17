@@ -1,30 +1,24 @@
-import type { PrismaClient } from '@prisma/client'
 import type { IUser } from '../entities/User'
+import { db as prisma } from '@/lib/db'
 
-export class UserRepository {
-  private prisma: PrismaClient
-
-  constructor(prisma: PrismaClient) {
-    this.prisma = prisma
-  }
-
+export class UserRepository implements IUserRepository {
   async create(userData: IUser): Promise<IUser> {
-    return await this.prisma.user.create({ data: userData })
+    return await prisma.user.create({ data: userData })
   }
 
   async getAll(): Promise<IUser[]> {
-    return await this.prisma.user.findMany()
+    return await prisma.user.findMany()
   }
 
   async getById(id: number): Promise<IUser | null> {
-    const user = await this.prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id },
     })
     return user
   }
 
   async update(id: number, userData: Partial<IUser>): Promise<IUser> {
-    const user = await this.prisma.user.update({
+    const user = await prisma.user.update({
       where: { id },
       data: userData,
     })
@@ -32,11 +26,11 @@ export class UserRepository {
   }
 
   async delete(id: number): Promise<void> {
-    await this.prisma.user.delete({ where: { id } })
+    await prisma.user.delete({ where: { id } })
   }
 }
 
-export interface IUserService {
+export interface IUserRepository {
   create(userData: IUser): Promise<IUser>
   getAll(): Promise<IUser[]>
   getById(id: number): Promise<IUser | null>

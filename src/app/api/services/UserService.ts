@@ -2,29 +2,29 @@ import type { IUser } from '../entities/User'
 import type { UserRepository } from '../repositories/UserRepository'
 
 export class UserService {
-  private userRepository: UserRepository
+  private readonly userRepository: UserRepository
 
   constructor(userRepository: UserRepository) {
     this.userRepository = userRepository
   }
 
-  async createUser(user: IUser) {
+  async createUserService(user: IUser) {
     return this.userRepository.create(user)
   }
 
-  async getAllUsers() {
+  async getAllUsersService() {
     return this.userRepository.getAll()
   }
 
-  async getUserById(id: number) {
+  async getUserByIdService(id: number) {
     return this.userRepository.getById(id)
   }
 
-  async updateUser(id: number, user: IUser) {
+  async updateUserService(id: number, user: IUser) {
     return this.userRepository.update(id, user)
   }
 
-  async deleteUser(id: number) {
+  async deleteUserService(id: number) {
     return this.userRepository.delete(id)
   }
 }
